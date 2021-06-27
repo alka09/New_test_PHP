@@ -3,7 +3,7 @@ require_once 'Unpacker.php';
 require_once 'Packer.php';
 
 $array = new Unpacker();
-$string = "a4bc2d5e";
+$string = 'qwe\\5';
 $arr = $array->Unpack($string);
 
 function array_flatten($arr): array
@@ -22,9 +22,15 @@ function array_flatten($arr): array
 $new_array = array_flatten($arr);
 $new_string = implode($new_array);
 
-//print_r($new_string);
+$new_string = implode($new_array);
+if (empty($new_string)) {
+    echo("Некорректная строка" . "<br>");
 
-$unpack_string = "aaaabccddddde";
+} else {
+    echo($new_string  . "<br>");
+}
+
+$unpack_string = 'qwe\\\\\\\\\\';
 $pack_string = new Packer();
 
 print_r($pack_string->Pack($unpack_string));
