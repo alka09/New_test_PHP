@@ -30,7 +30,7 @@ if (empty($new_string)) {
     echo($new_string  . "<br>");
 }
 
-$unpack_string = 'qwe\\\\\\\\\\';
+$unpack_string = 'qwe45';
 $pack_string = new Packer();
 
 print_r($pack_string->Pack($unpack_string));

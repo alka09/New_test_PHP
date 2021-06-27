@@ -4,23 +4,19 @@
 class Packer
 {
     public function Pack($string)
-
     {
-        $array = [];
-        foreach (count_chars($string, 1) as $i => $val) {
+        $arr = str_split($string);
+        $new_arr = [];
 
-            $count = chr($i);
+        foreach (array_count_values($arr) as $i => $item) {
 
-            echo $count . "<br>";
-
-            if ($val === 1) {
-                $val = "";
+            if ($item === 1) {
+                $item = "";
             }
-            $array[] = $count . $val;
+
+            $new_arr[] = $i . $item;
         }
-
-        return implode("", $array);
+        return implode("", $new_arr);
     }
-
 
 }
