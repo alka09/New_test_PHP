@@ -1,22 +1,33 @@
 <?php
 
-
 class Unpacker
 {
     public $string;
 
     public function Unpack($string)
     {
-        $arr = str_split($string);
 
-        foreach ($arr as $key => $value) {
-            if ((int)$value || (int)$value && (int)$arr[$key - 1]) {
-                $new_arr[] = str_repeat($arr[$key - 1], $value);
-                $arr[$key - 1] = array_replace($new_arr);
-                unset($arr[$key]);
-                $new_arr = [];
+        $array = explode("\\", $string);
+
+        var_dump($array);
+
+        foreach ($array as $key => $sub_array) {
+            $sub_array = str_split($sub_array);
+
+            $count = count($sub_array);
+            if ($count > 1) {
+                foreach ($sub_array as $count => $value) {
+                    if ((int)$value && isset($sub_array[$count - 1])) {
+                        $new_arr[] = str_repeat($sub_array[$count - 1], $value);
+                        $sub_array[$count - 1] = $new_arr;
+                        unset($sub_array[$count]);
+                        $new_arr = [];
+                    }
+                }
             }
+            $array[$key] = $sub_array;
         }
-        return $arr;
+        return $array;
     }
 }
+
